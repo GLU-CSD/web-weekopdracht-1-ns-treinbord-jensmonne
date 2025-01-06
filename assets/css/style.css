@@ -1,4 +1,4 @@
-#container{
+#container {
     width: 936px;
     display: flex;
     margin: 0 auto;
@@ -6,7 +6,7 @@
     border: 2px solid #000;
 }
 
-#left{
+#left {
     width: 240px;
     background-color: #f2f2f2;
     height: 335px;
@@ -22,8 +22,8 @@
     border: 2px solid #000;
 }
 
-#right{
-    width:128px;
+#right {
+    width: 128px;
     height: 335px;
     background-color: rgb(0, 0, 106);
     border: 2px solid #000;
