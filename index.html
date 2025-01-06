@@ -10,16 +10,49 @@
 
 <body>
     <div id="container">
-        <div id="left">
-            <!-- hier komt de klok -->
+        <div id="left" class="section">
+            <div id="clock">
+                <h1>00:00</h1>
+                <p>Current Time</p>
+            </div>
         </div>
-        <div id="middle">
-            <!-- Hier komt de reizigers info -->
+
+        <div id="middle" class="section">
+            <div class="wrectangle">
+                <h2>1 minuut</h2>
+                <h1>Rhenen</h1>
+            </div>
+            <div class="brectangle"></div>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Time</th>
+                        <th>Destination</th>
+                        <th>Train Type</th>
+                        <th>Platform</th>
+                    </tr>
+                </thead>
+                <tbody id="departure-list">
+
+                </tbody>
+            </table>
         </div>
-        <div id="right">
-            <!-- hier komt het spoor nummer -->
+
+        <div id="right" class="section">
+            <svg width="112" height="128">
+                <rect x="16" y="32" width="96" height="96" style="fill:white;" />
+                <rect x="16" y="32" width="20" height="20" style="fill:rgb(37,87, 223);" />
+
+                <!-- <text id="platformText" x="64" y="80" fill="black" font-size="14" text-anchor="middle" dominant-baseline="middle" /> -->
+                <text x="24" y="115" fill="rgb(37,87, 223)" font-size="60" font-weight="bold">
+                    15
+                </text>
+            </svg>
         </div>
     </div>
+
+    <script src="assets/js/script.js"></script>
 </body>
 
 </html>
