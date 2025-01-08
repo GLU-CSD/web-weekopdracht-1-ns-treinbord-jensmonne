@@ -43,5 +43,28 @@
 .brectangle {
     width: 480px;
     height: 25px;
-    background-color: rgb(5, 18, 152);
+    background-color: rgb(0, 0, 107);
+}
+
+.nstext {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    width: 100%;
+    font-family: Arial, sans-serif;
+    color: rgb(0, 0, 107);
+}
+
+.nstext h1 {
+    font-size: 30;
+}
+
+.nstext h2 {
+    font-size: 20;
+}
+
+.nsimage {
+    position: static;
+    margin-top: 3px;
+    margin-right: 3px;
 }

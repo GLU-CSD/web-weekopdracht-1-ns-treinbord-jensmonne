@@ -23,35 +23,71 @@ async function fetchDepartures() {
 
         const data = await response.json();
         displayDepartures(data.payload.departures);
+        displayNextTrainInfo(data.payload.departures);
     } catch (error) {
         console.error("Error fetching departures:", error);
     }
 }
 
 function displayDepartures(departures) {
-    const departureListElement = document.querySelector("#departure-list");
-
     const filteredDepartures = departures.filter(
         (departure) => departure.plannedTrack === platform
     );
 
-    if (filteredDepartures.length === 0) {
-        departureListElement.innerHTML = `<tr><td colspan="4">No departures found for platform ${platform}.</td></tr>`;
-        return;
-    }
+    if (filteredDepartures.length > 0) {
+        const firstDeparture = filteredDepartures[0];
 
-    departureListElement.innerHTML = filteredDepartures
-        .map(
-            (departure) => `
-                <tr>
-                    <td>${departure.actualDateTime.split("T")[1].slice(0, 5)}</td>
-                    <td>${departure.direction}</td>
-                    <td>${departure.trainCategory}</td>
-                    <td>${departure.plannedTrack}</td>
-                </tr>
-            `
-        )
-        .join("");
+        const nextDeparture = filteredDepartures[1];
+
+        const now = new Date();
+        const departureTime = new Date(firstDeparture.actualDateTime);
+        const minutesUntilArrival = Math.max(
+            Math.ceil((departureTime - now) / (1000 * 60)),
+            0
+        );
+
+        const trainTypeMapping = {
+            SPR: "Sprinter",
+            IC: "Intercity",
+            THA: "Thalys",
+            ICE: "Intercity Express",
+        };
+        const trainTypeFull =
+            trainTypeMapping[firstDeparture.trainCategory] || firstDeparture.trainCategory;
+
+        const routeStations = firstDeparture.routeStations || [];
+        const viaText =
+            routeStations.length > 0
+                ? `via ${routeStations.slice(0, -1).map(station => station.mediumName).join(", ")} en ${routeStations.slice(-1)[0].mediumName}`
+                : "";
+
+        document.getElementById("minutes-until").textContent = minutesUntilArrival;
+        document.getElementById("minuut").textContent = minutesUntilArrival <= 1 ? "minuut" : "minuten";
+        document.getElementById("train-type").textContent = trainTypeFull;
+        document.getElementById("destination").textContent = firstDeparture.direction;
+        document.getElementById("via-text").textContent = viaText;
+        document.getElementById("platformText").textContent = platform;
+
+
+        if (nextDeparture) {
+            const now = new Date();
+            const departureTime = new Date(nextDeparture.actualDateTime);
+            const minutesUntilArrival = Math.max(
+                Math.ceil((departureTime - now) / (1000 * 60)),
+                0
+            );
+    
+            document.getElementById("next-train-time").textContent = `Hierna/next: ${nextDeparture.actualDateTime.split("T")[1].slice(0, 5)} ${nextDeparture.direction}`;
+        } else {
+            document.getElementById("next-train-time").textContent = "No upcoming trains";
+        }
+    } else {
+        document.getElementById("minutes-until").textContent = "--";
+        document.getElementById("minuut").textContent = "minuten";
+        document.getElementById("train-type").textContent = "No data";
+        document.getElementById("destination").textContent = "No data";
+        document.getElementById("via-text").textContent = "";
+    }
 }
 
 function initBoard() {

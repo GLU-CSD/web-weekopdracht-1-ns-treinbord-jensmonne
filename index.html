@@ -19,24 +19,22 @@
 
         <div id="middle" class="section">
             <div class="wrectangle">
-                <h2>1 minuut</h2>
-                <h1>Rhenen</h1>
+                <div class="nstext">
+                    <h1 id="minutes-until" style="padding-left: 15px;">1</h1>
+                    <h2 id="minuut">minuten</h2>
+                    <h1 id="train-type" style="padding-left: 100px;">Intercity</h1>
+                    <img class="nsimage" src="assets/img/ns_logo.png" width="80"></img>
+                </div>
+                <h1 id="destination" style="padding-left: 10px; color: rgb(0, 0, 107);">Rhenen</h1>
+                <p id="via-text" style="color: rgb(0, 0, 107); font-size: 20px; font-weight: bold; margin-left: 10px;">
+                </p>
             </div>
-            <div class="brectangle"></div>
-
-            <table>
-                <thead>
-                    <tr>
-                        <th>Time</th>
-                        <th>Destination</th>
-                        <th>Train Type</th>
-                        <th>Platform</th>
-                    </tr>
-                </thead>
-                <tbody id="departure-list">
-
-                </tbody>
-            </table>
+            <div class="brectangle">
+                <div>
+                    <span id="next-train-time"
+                        style="color: white; font-size: 18px; font-weight: bold; margin-left: 15px;">hii</span>
+                </div>
+            </div>
         </div>
 
         <div id="right" class="section">
@@ -44,14 +42,13 @@
                 <rect x="16" y="32" width="96" height="96" style="fill:white;" />
                 <rect x="16" y="32" width="20" height="20" style="fill:rgb(37,87, 223);" />
 
-                <!-- <text id="platformText" x="64" y="80" fill="black" font-size="14" text-anchor="middle" dominant-baseline="middle" /> -->
-                <text x="24" y="115" fill="rgb(37,87, 223)" font-size="60" font-weight="bold">
+                <text x="40" y="46" font-size="13" font-weight="bold">spoor</text>
+                <text id="platformText" x="24" y="115" fill="rgb(37,87, 223)" font-size="60" font-weight="bold">
                     15
                 </text>
             </svg>
         </div>
     </div>
-
     <script src="assets/js/script.js"></script>
 </body>
 
