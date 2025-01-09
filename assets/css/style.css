@@ -82,7 +82,7 @@ body {
     content: '';
     position: absolute;
     top: 43.5%;
-    left: 22.7%;
+    left: 29.3%;
     width: 10px;
     height: 10px;
     background-color: #333;
@@ -95,7 +95,7 @@ body {
 .second {
     position: absolute;
     bottom: 56.5%;
-    left: 22.7%;
+    left: 29.3%;
     transform-origin: 50% 100%;
     transition-timing-function: steps(1);
     transition: transform 0.5s ease;

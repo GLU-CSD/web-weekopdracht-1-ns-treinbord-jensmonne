@@ -1,4 +1,4 @@
-const apiKey = "your_API_key_here";
+const apiKey = "your_api_key_here";
 const station = "UT";
 const platform = "15";
 const nsApiUrl = `https://gateway.apiportal.ns.nl/reisinformatie-api/api/v2/departures?station=${station}`;
