@@ -1,12 +1,22 @@
-const apiKey = "your_api_key_here";
+const apiKey = "your_API_key_here";
 const station = "UT";
 const platform = "15";
 const nsApiUrl = `https://gateway.apiportal.ns.nl/reisinformatie-api/api/v2/departures?station=${station}`;
 
 function updateClock() {
-    const clockElement = document.querySelector("#clock h1");
     const now = new Date();
-    clockElement.textContent = now.toLocaleTimeString();
+
+    const hour = now.getHours();
+    const minute = now.getMinutes();
+    const second = now.getSeconds();
+
+    const hourDeg = (hour % 12) * 30 + minute * 0.5;
+    const minuteDeg = minute * 6;
+    const secondDeg = second * 6;
+
+    document.getElementById('hour').style.transform = `rotate(${hourDeg}deg)`;
+    document.getElementById('minute').style.transform = `rotate(${minuteDeg}deg)`;
+    document.getElementById('second').style.transform = `rotate(${secondDeg}deg)`;
 }
 
 async function fetchDepartures() {
@@ -23,7 +33,6 @@ async function fetchDepartures() {
 
         const data = await response.json();
         displayDepartures(data.payload.departures);
-        displayNextTrainInfo(data.payload.departures);
     } catch (error) {
         console.error("Error fetching departures:", error);
     }
@@ -76,7 +85,7 @@ function displayDepartures(departures) {
                 Math.ceil((departureTime - now) / (1000 * 60)),
                 0
             );
-    
+
             document.getElementById("next-train-time").textContent = `Hierna/next: ${nextDeparture.actualDateTime.split("T")[1].slice(0, 5)} ${nextDeparture.direction}`;
         } else {
             document.getElementById("next-train-time").textContent = "No upcoming trains";

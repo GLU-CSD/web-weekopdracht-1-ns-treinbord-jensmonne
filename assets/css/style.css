@@ -1,3 +1,12 @@
+html,
+body {
+    height: 100%;
+    background: #eee;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 #container {
     width: 936px;
     display: flex;
@@ -16,7 +25,7 @@
 #middle {
     width: 568px;
     height: 339px;
-    background-color: rgb(37,87, 223);
+    background-color: rgb(37, 87, 223);
     padding: 35px;
     box-sizing: border-box;
     border: 2px solid #000;
@@ -25,7 +34,7 @@
 #right {
     width: 128px;
     height: 335px;
-    background-color: rgb(37,87, 223);
+    background-color: rgb(37, 87, 223);
     border: 2px solid #000;
 }
 
@@ -37,7 +46,7 @@
 
 .wrectangle h2,
 .wrectangle h1 {
-    margin: 0; /* Reset margins if needed */
+    margin: 0;
 }
 
 .brectangle {
@@ -67,4 +76,45 @@
     position: static;
     margin-top: 3px;
     margin-right: 3px;
+}
+
+.clock::before {
+    content: '';
+    position: absolute;
+    top: 43.5%;
+    left: 22.7%;
+    width: 10px;
+    height: 10px;
+    background-color: #333;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.hour,
+.minute,
+.second {
+    position: absolute;
+    bottom: 56.5%;
+    left: 22.7%;
+    transform-origin: 50% 100%;
+    transition-timing-function: steps(1);
+    transition: transform 0.5s ease;
+}
+
+.hour {
+    width: 6px;
+    height: 50px;
+    background-color: #333;
+}
+
+.minute {
+    width: 4px;
+    height: 70px;
+    background-color: #666;
+}
+
+.second {
+    width: 2px;
+    height: 90px;
+    background-color: red;
 }

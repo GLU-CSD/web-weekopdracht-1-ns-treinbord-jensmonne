@@ -11,11 +11,14 @@
 <body>
     <div id="container">
         <div id="left" class="section">
-            <div id="clock">
-                <h1>00:00</h1>
-                <p>Current Time</p>
+            <img src="assets/img/Clock.png">
+            <div class="clock">
+                <div class="hour" id="hour"></div>
+                <div class="minute" id="minute"></div>
+                <div class="second" id="second"></div>
             </div>
         </div>
+
 
         <div id="middle" class="section">
             <div class="wrectangle">
@@ -28,6 +31,7 @@
                 <h1 id="destination" style="padding-left: 10px; color: rgb(0, 0, 107);">Rhenen</h1>
                 <p id="via-text" style="color: rgb(0, 0, 107); font-size: 20px; font-weight: bold; margin-left: 10px;">
                 </p>
+                <p id="train-size" style="color: rgb(0, 0, 107); font-size: 18px; margin-left: 10px;">Train size: </p>
             </div>
             <div class="brectangle">
                 <div>
@@ -48,6 +52,7 @@
                 </text>
             </svg>
         </div>
+    </div>
     </div>
     <script src="assets/js/script.js"></script>
 </body>
