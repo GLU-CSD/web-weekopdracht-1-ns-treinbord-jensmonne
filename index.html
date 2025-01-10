@@ -5,55 +5,77 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weekopdracht - NS-Treinbord</title>
+    <!-- Link to the external CSS stylesheet -->
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
 <body>
+    <!-- Main container for the train board -->
     <div id="container">
+
+        <!-- Left section: Clock display -->
         <div id="left" class="section">
+            <!-- Clock background image -->
             <img src="assets/img/Clock.png">
             <div class="clock">
+                <!-- Clock hands -->
                 <div class="hour" id="hour"></div>
                 <div class="minute" id="minute"></div>
                 <div class="second" id="second"></div>
             </div>
         </div>
 
-
+        <!-- Middle section: Train departure information -->
         <div id="middle" class="section">
+            <!-- Upper rectangle displaying train departure details -->
             <div class="wrectangle">
                 <div class="nstext">
+                    <!-- Time until departure -->
                     <h1 id="minutes-until" style="padding-left: 15px;">1</h1>
+                    <!-- "Minute(s)" label -->
                     <h2 id="minuut" style="padding-left: 15px;">1 minuten</h2>
+                    <!-- Train type -->
                     <h1 id="train-type" style="padding-left: 100px;">Intercity</h1>
-                    <img class="nsimage" src="assets/img/ns_logo.png" width="80"></img>
+                    <!-- NS logo -->
+                    <img class="nsimage" src="assets/img/ns_logo.png" width="80">
                 </div>
+                <!-- Destination of the train -->
                 <h1 id="destination" style="padding-left: 10px; color: rgb(0, 0, 107);">Rhenen</h1>
+                <!-- Route information ("via" text) -->
                 <p id="via-text" style="color: rgb(0, 0, 107); font-size: 20px; font-weight: bold; margin-left: 10px;">
                 </p>
-                <img src="assets/img/Trein.png" style="width: 250px; padding: 35px; margin-left: 70px;"></img>
+                <!-- Train image -->
+                <img src="assets/img/Trein.png" style="width: 250px; padding: 35px; margin-left: 70px;">
             </div>
+            <!-- Lower rectangle displaying the next train's information -->
             <div class="brectangle">
                 <div>
+                    <!-- Next train departure details -->
                     <span id="next-train-time"
                         style="color: white; font-size: 18px; font-weight: bold; margin-left: 15px;">hii</span>
                 </div>
             </div>
         </div>
 
+        <!-- Right section: Platform information -->
         <div id="right" class="section">
+            <!-- SVG graphic for platform display -->
             <svg width="112" height="128">
+                <!-- White background rectangle -->
                 <rect x="16" y="32" width="96" height="96" style="fill:white;" />
+                <!-- Blue rectangle for "spoor" label -->
                 <rect x="16" y="32" width="20" height="20" style="fill:rgb(37,87, 223);" />
-
+                <!-- "Spoor" label -->
                 <text x="40" y="46" font-size="13" font-weight="bold">spoor</text>
+                <!-- Platform number -->
                 <text id="platformText" x="24" y="115" fill="rgb(37,87, 223)" font-size="60" font-weight="bold">
                     15
                 </text>
             </svg>
         </div>
+
     </div>
-    </div>
+    <!-- Link to the external JavaScript file -->
     <script src="assets/js/script.js"></script>
 </body>
 
