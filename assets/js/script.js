@@ -3,6 +3,8 @@ const station = "UT";
 const platform = "15";
 const nsApiUrl = `https://gateway.apiportal.ns.nl/reisinformatie-api/api/v2/departures?station=${station}`;
 
+let digital;
+
 function updateClock() {
     const now = new Date();
 
@@ -45,11 +47,12 @@ function displayDepartures(departures) {
 
     if (filteredDepartures.length > 0) {
         const firstDeparture = filteredDepartures[0];
-
         const nextDeparture = filteredDepartures[1];
 
         const now = new Date();
         const departureTime = new Date(firstDeparture.actualDateTime);
+        const departureTimeFormatted = departureTime.toTimeString().split(" ")[0]; // Extracts "HH:MM:SS"
+
         const minutesUntilArrival = Math.max(
             Math.ceil((departureTime - now) / (1000 * 60)),
             0
@@ -69,24 +72,24 @@ function displayDepartures(departures) {
             routeStations.length > 0
                 ? `via ${routeStations.slice(0, -1).map(station => station.mediumName).join(", ")} en ${routeStations.slice(-1)[0].mediumName}`
                 : "";
-
-        document.getElementById("minutes-until").textContent = minutesUntilArrival;
-        document.getElementById("minuut").textContent = minutesUntilArrival <= 1 ? "minuut" : "minuten";
+        if (digital === true) {
+            document.getElementById("minutes-until").textContent = departureTimeFormatted.split(" ")[0].slice(0, -3);
+            document.getElementById("minuut").textContent = '';
+        } else {
+            document.getElementById("minutes-until").textContent = minutesUntilArrival;
+            document.getElementById("minuut").textContent = minutesUntilArrival <= 1 ? "minuut" : "minuten";
+        }
         document.getElementById("train-type").textContent = trainTypeFull;
         document.getElementById("destination").textContent = firstDeparture.direction;
         document.getElementById("via-text").textContent = viaText;
         document.getElementById("platformText").textContent = platform;
 
-
         if (nextDeparture) {
-            const now = new Date();
-            const departureTime = new Date(nextDeparture.actualDateTime);
-            const minutesUntilArrival = Math.max(
-                Math.ceil((departureTime - now) / (1000 * 60)),
-                0
-            );
+            const nextDepartureTime = new Date(nextDeparture.actualDateTime);
+            const nextDepartureTimeFormatted = nextDepartureTime.toTimeString().split(" ")[0].slice(0, -3);
 
-            document.getElementById("next-train-time").textContent = `Hierna/next: ${nextDeparture.actualDateTime.split("T")[1].slice(0, 5)} ${nextDeparture.direction}`;
+            document.getElementById("next-train-time").textContent =
+                `Hierna/next: ${nextDepartureTimeFormatted} ${nextDeparture.direction}`;
         } else {
             document.getElementById("next-train-time").textContent = "No upcoming trains";
         }
@@ -99,11 +102,19 @@ function displayDepartures(departures) {
     }
 }
 
+function digitalSwtich() {
+    digital = !digital;
+    console.log(digital);
+    fetchDepartures();
+}
+
 function initBoard() {
     updateClock();
     fetchDepartures();
+    digitalSwtich();
     setInterval(updateClock, 1000);
     setInterval(fetchDepartures, 60000);
+    setInterval(digitalSwtich, 5000);
 }
 
 document.addEventListener("DOMContentLoaded", initBoard);
